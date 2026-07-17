@@ -1,4 +1,5 @@
 const hero = document.querySelector("#hero");
+const cursor = document.querySelector(".cursor");
 const coarsePointer = window.matchMedia("(pointer: coarse)");
 
 let targetX = window.innerWidth * 0.64;
@@ -20,6 +21,7 @@ function render() {
 
   hero.style.setProperty("--mask-x", `${currentX}px`);
   hero.style.setProperty("--mask-y", `${currentY}px`);
+  cursor.style.transform = `translate3d(${currentX - 30}px, ${currentY - 30}px, 0)`;
   frame = requestAnimationFrame(render);
 }
 

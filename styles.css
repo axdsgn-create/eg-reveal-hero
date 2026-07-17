@@ -2,7 +2,7 @@
   color-scheme: dark;
   --paper: #f4eee5;
   --gold: #d4ad74;
-  --mask-size: clamp(240px, 34vw, 650px);
+  --mask-size: clamp(180px, 24vw, 460px);
   --mask-x: 50%;
   --mask-y: 54%;
 }
@@ -25,6 +25,7 @@ button { color: inherit; font: inherit; }
   min-height: 100svh;
   isolation: isolate;
   overflow: hidden;
+  cursor: none;
 }
 
 .scene,
@@ -47,11 +48,42 @@ button { color: inherit; font: inherit; }
 
 .scene__reveal {
   will-change: -webkit-mask-position, mask-position;
-  -webkit-mask-image: radial-gradient(circle var(--mask-size) at var(--mask-x) var(--mask-y), #000 0 56%, rgba(0,0,0,.92) 67%, rgba(0,0,0,.35) 83%, transparent 100%);
-  mask-image: radial-gradient(circle var(--mask-size) at var(--mask-x) var(--mask-y), #000 0 56%, rgba(0,0,0,.92) 67%, rgba(0,0,0,.35) 83%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle var(--mask-size) at var(--mask-x) var(--mask-y), #000 0 58%, rgba(0,0,0,.95) 68%, rgba(0,0,0,.52) 82%, transparent 100%);
+  mask-image: radial-gradient(circle var(--mask-size) at var(--mask-x) var(--mask-y), #000 0 58%, rgba(0,0,0,.95) 68%, rgba(0,0,0,.52) 82%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
+
+.cursor {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(255,255,255,.78);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: difference;
+  will-change: transform;
+  transition: opacity .18s ease;
+}
+
+.cursor span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.hero.is-active .cursor { opacity: 1; }
 
 @media (max-width: 760px) {
   :root { --mask-size: clamp(190px, 48vw, 330px); }
   .scene__image { object-position: 55% center; }
+  .hero { cursor: auto; }
+  .cursor { display: none; }
 }
