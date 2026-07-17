@@ -1,0 +1,1 @@
+# eg-reveal-hero
